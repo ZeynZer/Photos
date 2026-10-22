@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Connexion – Zeyneb</title>
+<title>Connexion – Google</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -17,7 +17,7 @@ html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
 body{margin:0;min-height:100%;background:var(--bg);color:var(--text);font-family:Roboto,Arial,sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px}
 .card{background:var(--card);border-radius:28px;width:100%;max-width:1040px;min-height:384px;padding:36px 36px 28px;display:grid;grid-template-columns:1fr 1fr;gap:24px 48px}
 .logo{font-size:28px;font-weight:500;letter-spacing:-.5px;line-height:1}
-.logo span:nth-child(1){color:var(--z)}.logo span:nth-child(2){color:var(--e)}.logo span:nth-child(3){color:var(--y)}.logo span:nth-child(4){color:var(--n)}.logo span:nth-child(5){color:var(--e)}.logo span:nth-child(6){color:var(--z)}
+.logo span:nth-child(1){color:var(--G)}.logo span:nth-child(2){color:var(--o)}.logo span:nth-child(3){color:var(--o)}.logo span:nth-child(4){color:var(--g)}.logo span:nth-child(5){color:var(--l)}.logo span:nth-child(6){color:var(--e)}
 h1{font-size:36px;font-weight:400;margin:24px 0 12px;line-height:1.2}
 .sub{font-size:16px;color:var(--text);margin:0}
 .right{padding-top:44px}
@@ -53,7 +53,7 @@ footer span{display:flex;gap:24px}
 <body>
 <main class="card">
   <section>
-    <div class="logo" aria-label="Zeyneb"><span>Z</span><span>e</span><span>y</span><span>n</span><span>e</span><span>b</span></div>
+    <div class="logo" aria-label="Zeyneb"><span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span></div>
     <h1 id="title">Connexion</h1>
     <p class="sub" id="sub" hidden></p>
     <div class="chip" id="chip" hidden><i id="chipI"></i><span id="chipN"></span></div>
@@ -83,18 +83,18 @@ footer span{display:flex;gap:24px}
   function field(id,label,type,extra){ return '<div class="field" id="f-'+id+'"><input id="'+id+'" type="'+type+'" placeholder=" " '+(extra||'')+'><label for="'+id+'">'+label+'</label></div>'; }
   function bad(id,m){ document.getElementById('f-'+id).classList.add('bad'); var e=document.getElementById('msg'); e.textContent=m; e.className='msg'; document.getElementById(id).focus(); }
   function info(m,good){ var e=document.getElementById('msg'); e.textContent=m; e.className='msg'+(good?' ok':''); }
-  function needSetup(){ info('Supabase n’est pas configuré : renseigne SUPABASE_URL et SUPABASE_ANON_KEY dans le fichier.'); }
+  function needSetup(){ info('.'); }
 
   function stepUser(){
     setChip(''); title.textContent='Connexion'; sub.textContent=''; sub.hidden=true;
     view.innerHTML=field('u','Adresse e-mail','email','autocomplete="username" autocapitalize="none" spellcheck="false"')+
       '<div class="msg" id="msg" role="alert"></div>'+
-      '<p class="hint" style="margin-top:32px">Cette page est réservée à la famille. Connectez-vous avec votre adresse e-mail.</p>'+
+      '<p class="hint" style="margin-top:32px">Connectez-vous avec votre adresse e-mail.</p>'+
       '<div class="row"><button class="link" id="create" type="button">Créer un compte</button><button class="btn" id="next" type="button">Suivant</button></div>';
     var u=document.getElementById('u'); u.focus();
     function go(){
       var v=u.value.trim().toLowerCase();
-      if(!EMAIL.test(v)) return bad('u','Impossible de trouver votre compte Zeyneb');
+      if(!EMAIL.test(v)) return bad('u','Impossible de trouver votre compte.');
       stepPass(v);
     }
     document.getElementById('next').onclick=go;
