@@ -89,12 +89,12 @@ footer span{display:flex;gap:24px}
     setChip(''); title.textContent='Connexion'; sub.textContent=''; sub.hidden=true;
     view.innerHTML=field('u','Adresse e-mail','email','autocomplete="username" autocapitalize="none" spellcheck="false"')+
       '<div class="msg" id="msg" role="alert"></div>'+
-      '<p class="hint" style="margin-top:32px">Cette page est réservée à la famille. Connectez-vous avec votre adresse e-mail.</p>'+
+      '<p class="hint" style="margin-top:32px"> Connectez-vous avec votre adresse e-mail.</p>'+
       '<div class="row"><button class="link" id="create" type="button">Créer un compte</button><button class="btn" id="next" type="button">Suivant</button></div>';
     var u=document.getElementById('u'); u.focus();
     function go(){
       var v=u.value.trim().toLowerCase();
-      if(!EMAIL.test(v)) return bad('u','Impossible de trouver votre compte Zeyn');
+      if(!EMAIL.test(v)) return bad('u','Impossible de trouver votre compte');
       stepPass(v);
     }
     document.getElementById('next').onclick=go;
