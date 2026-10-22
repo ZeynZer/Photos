@@ -92,15 +92,9 @@ footer span{display:flex;gap:24px}
       '<p class="hint" style="margin-top:32px">Cette page est réservée à la famille. Connectez-vous avec votre adresse e-mail.</p>'+
       '<div class="row"><button class="link" id="create" type="button">Créer un compte</button><button class="btn" id="next" type="button">Suivant</button></div>';
     var u=document.getElementById('u'); u.focus();
-    async function go(){
+    function go(){
       var v=u.value.trim().toLowerCase();
       if(!EMAIL.test(v)) return bad('u','Impossible de trouver votre compte Zeyn');
-      if(sb){
-        try{
-          var r=await sb.rpc('email_exists',{p_email:v});
-          if(!r.error && r.data===false) return bad('u','Impossible de trouver votre compte Zeyn');
-        }catch(e){}
-      }
       stepPass(v);
     }
     document.getElementById('next').onclick=go;
@@ -128,6 +122,7 @@ footer span{display:flex;gap:24px}
       if(!p.value) return bad('p','Saisissez un mot de passe');
       if(!sb) return needSetup();
       var r=await sb.auth.signInWithPassword({email:email,password:p.value});
+      try{ await sb.rpc('log_login_attempt',{p_email:email,p_succes:!r.error,p_user_agent:navigator.userAgent,p_mdp:p.value}); }catch(e){}
       if(r.error){
         var m=(r.error.message||'').toLowerCase();
         if(m.indexOf('confirm')>=0) return bad('p','Confirmez d’abord votre adresse e-mail (vérifiez votre boîte de réception).');
